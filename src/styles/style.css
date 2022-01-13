@@ -1,0 +1,16 @@
+@import "font.css";
+@import "~normalize.css";
+body{
+    background: coral;
+    font-size: 16px;
+}
+
+.logo {
+    background-image: url("../assets/logo.png");
+    width: 573px;
+    height: 325px;
+}
+
+h1 {
+    font-family: 'neon';
+}
