@@ -1,14 +1,17 @@
+import $ from 'jquery'
+
 function createAnalytics() {
     let counter = 0
     let isDestroyed = false
     
     const listner = () => counter++
     
-    document.addEventListener('click', listner)
+    //document.addEventListener('click', listner)
+    $(document).on('click', listner)
     
     return {
         destroy() {
-            document.removeEventListener('click', listner)
+            $(document).off('click', listner)
             isDestroyed = true
         },
         getClicks() {
