@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const TesterWebpackPlugin = require('terser-webpack-plugin')
+require("@babel/polyfill");
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
@@ -34,13 +35,23 @@ const cssloader = extra => {
     return loaders
 }
 
+const babelOptions = preset => {
+    const opts = {
+        presets: [
+            '@babel/preset-env'
+        ]
+    }
+    if(preset) { opts.presets.push(preset) }
+    return opts
+}
+
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
     //entry: './src/index.js',
     entry: {
-        main: './index.js',
-        analytics: './analytics.js'
+        main: ['@babel/polyfill', './index.jsx'],
+        analytics: './analytics.ts'
     },
     output: {
         filename: filename('js'),
@@ -112,6 +123,30 @@ module.exports = {
             {
                 test: /\.csv$/,
                 use: ['csv-loader']
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: babelOptions()
+                }
+            },
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: babelOptions('@babel/preset-typescript')
+                }
+            },
+            {
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: babelOptions('@babel/preset-react')
+                }
             }
         ]
     }

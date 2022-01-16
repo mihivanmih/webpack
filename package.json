@@ -12,6 +12,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "bable-loader": "^0.0.1-security",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.0",
     "cross-env": "^7.0.3",
@@ -29,9 +35,13 @@
     "webpack-dev-server": "^4.7.3",
     "xml-loader": "^1.2.1"
   },
+  "browserslist": "> 0.25%, not dead",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "jquery": "^3.6.0",
     "normalize.css": "^8.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "sass-loader": "^12.4.0"
   }
 }

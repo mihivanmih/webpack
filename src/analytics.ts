@@ -1,10 +1,10 @@
 import $ from 'jquery'
 
-function createAnalytics() {
+function createAnalytics(): object {
     let counter = 0
-    let isDestroyed = false
+    let isDestroyed: boolean = false
     
-    const listner = () => counter++
+    const listner = (): number => counter++
     
     //document.addEventListener('click', listner)
     $(document).on('click', listner)
@@ -24,4 +24,4 @@ function createAnalytics() {
     }
 }
 
-window.analytics = createAnalytics()
+window['analytics'] = createAnalytics()
